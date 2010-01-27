@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<portlets>
+
+ <!-- Portlet type registrations -->
+
+ <portlet
+   addview="aaolm.portlet.top.TopPortlet"
+   title="Top Portlet"
+   description="The top portlet in the sidebar."
+   />
+
+</portlets>
