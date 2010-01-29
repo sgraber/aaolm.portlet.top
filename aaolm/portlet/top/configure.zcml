@@ -26,4 +26,11 @@
          editview=".topportlet.EditForm"
          />
 
+    <!-- Resource directory for images -->
+
+    <browser:resourceDirectory
+        name="aaolm.portlet.top.images"
+        directory="images"
+        />
+
 </configure>
