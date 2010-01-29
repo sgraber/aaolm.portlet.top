@@ -1,4 +1,5 @@
 from zope.interface import implements
+from Acquisition import aq_inner
 
 from plone.portlets.interfaces import IPortletDataProvider
 from plone.app.portlets.portlets import base
@@ -18,14 +19,9 @@ class ITopPortlet(IPortletDataProvider):
     same.
     """
 
-    # TODO: Add any zope.schema fields here to capture portlet configuration
-    # information. Alternatively, if there are no settings, leave this as an
-    # empty interface - see also notes around the add form and edit form
-    # below.
-
-    # some_field = schema.TextLine(title=_(u"Some field"),
-    #                              description=_(u"A field to use"),
-    #                              required=True)
+    text_field = schema.Text(title=_(u"Text to Display"),
+                                 description=_(u"Display the below text in the portlet.  HTML is OK."),
+                                 required=True)
 
 
 class Assignment(base.Assignment):
@@ -39,11 +35,11 @@ class Assignment(base.Assignment):
 
     # TODO: Set default values for the configurable parameters here
 
-    # some_field = u""
+    text_field = u'<p>One of the longest running online reefkeeping magazines worldwide, Advanced Aquarist is a hub of for those wanting to advance their reefkeeping skills and learn more about the animals they keep.</p> <p class="hide">What will you find here?  Articles on how to care for saltwater fish and coral, reviews of the latest books, products and equipment, news about what&apos;s happening in the hobby, educational videos, and tips on becoming a better reefkeeper.</p>'
 
     # TODO: Add keyword parameters for configurable parameters here
-    # def __init__(self, some_field=u""):
-    #    self.some_field = some_field
+    def __init__(self, some_field=u""):
+        self.text_field = text_field
 
     def __init__(self):
         pass
@@ -66,6 +62,16 @@ class Renderer(base.Renderer):
 
     render = ViewPageTemplateFile('topportlet.pt')
 
+    def __init__(self, *args):
+        base.Renderer.__init__(self, *args)
+        context = aq_inner(self.context)
+    
+    @property
+    def text(self):
+        """Get the Facebook javascript from the portlet"""
+        data = self.data
+        text_field = data.text_field
+        return text_field 
 
 class AddForm(base.AddForm):
     """Portlet add form.
