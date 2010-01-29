@@ -1,20 +1,12 @@
-<dl class="portlet portletTopPortlet"
+<div class="portletTopPortlet"
     i18n:domain="aaolm.portlet.top">
 
-    <dt class="portletHeader">
-        <span class="portletTopLeft"></span>
-        Header
-        <span class="portletTopRight"></span>
-    </dt>
+    <tal:text tal:content="structure view/text">
+        Our portlet text will go here.
+    </tal:text>
 
-    <dd class="portletItem odd">
-        Body text
-    </dd>
+    Here's where we will put our search box and links to Facebook,
+    Twitter, RSS, and Email lists. We'll also put links to the Current issue,
+    back issues, Books, PDFs, and Paypal.
 
-    <dd class="portletFooter">
-        <span class="portletBottomLeft"></span>
-        Footer
-        <span class="portletBottomRight"></span>
-    </dd>
-
-</dl>
+</div>
